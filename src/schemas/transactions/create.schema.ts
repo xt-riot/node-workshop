@@ -5,7 +5,10 @@ export const createTransactionInputSchema = z.object({
     currency: z.string().optional(),
     sourceAccountId: z.string(),
     targetAccountId: z.string(),
-}).strict()
+}).strict().refine(({ sourceAccountId, targetAccountId }) => sourceAccountId !== targetAccountId, {
+    message: 'the same as targetAccountId. Those must be different',
+    path: ['sourceAccountId']
+})
 
 export const createTransactionOutputSchema = z.boolean()
 
