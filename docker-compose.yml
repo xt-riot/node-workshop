@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  mongo:
+    ports:
+      - '27017:27017'
+    restart: always
+    logging:
+      options:
+        max-size: 1g
+    env_file: ./.env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME:${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD:${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE:${MONGO_INITDB_DATABASE}
+    image: mongo
+    volumes:
+      - ./scripts/initDatabase.js:/docker-entrypoint-initdb.d/initDatabase.js:ro
+      - ./src/database/db-data:/data/db
