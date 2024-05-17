@@ -22,7 +22,7 @@ function getAllTransactionsBySourceAccount(source: string) {
     return transactionModel.find({ source })
 }
 
-function getAllTransactions<T>(options: { limit?: number, skip?: number, order?: 'asc' | 'desc', groupBy?: '' } & T | undefined) {
+function getAllTransactions<T>(options?: T) {
     return transactionModel.find({}, { _id: 0, ...(options ?? {})})
 }
 
