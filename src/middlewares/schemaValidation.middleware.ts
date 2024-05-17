@@ -5,9 +5,10 @@ export function validateSchema(schema: z.ZodSchema<unknown>, input: unknown) {
   const validation = schema.safeParse(input);
 
   if (validation.success) return true;
-  else return validation.error.errors.map((issue: z.ZodIssue) => ({
-    message: `${issue.path.join('.')} is ${issue.message}`,
-  }));
+  else
+    return validation.error.errors.map((issue: z.ZodIssue) => ({
+      message: `${issue.path.join('.')} is ${issue.message}`,
+    }));
 }
 
 export function validateMiddleware(schema: z.ZodSchema<unknown>) {

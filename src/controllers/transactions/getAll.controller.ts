@@ -1,7 +1,12 @@
 import { Request } from 'express';
-import { GetAllTransactionInputType, GetAllTransactionOutputSchema } from '../../schemas/transactions/getAll.schema';
+import {
+  GetAllTransactionInputType,
+  GetAllTransactionOutputSchema,
+} from '../../schemas/transactions/getAll.schema';
 
-export async function getAllTransactions(request: Request<{}, {}, GetAllTransactionInputType>): Promise<GetAllTransactionOutputSchema> {
+export async function getAllTransactions(
+  request: Request<{}, {}, GetAllTransactionInputType>
+): Promise<GetAllTransactionOutputSchema> {
   const transactions = await request.db.getAllTransactions({
     // currency: 1, // uncomment to get currency in the response
     amount: 1,
@@ -10,5 +15,5 @@ export async function getAllTransactions(request: Request<{}, {}, GetAllTransact
     createdAt: 1,
   });
 
-  return transactions.map(transaction => transaction.toJSON());
+  return transactions.map((transaction) => transaction.toJSON());
 }

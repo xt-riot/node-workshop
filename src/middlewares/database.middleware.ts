@@ -7,7 +7,15 @@ function getAccount(id: string) {
 }
 
 function getAllAccounts() {
-  return accountModel.aggregate([ { $group: { _id: null, totalAssets: { $sum: '$balance' }, totalAccounts: { $count: {} } } }]);
+  return accountModel.aggregate([
+    {
+      $group: {
+        _id: null,
+        totalAssets: { $sum: '$balance' },
+        totalAccounts: { $count: {} },
+      },
+    },
+  ]);
 }
 
 function getTransaction(id: string) {
@@ -26,12 +34,28 @@ function getAllTransactions<T>(options?: T) {
   return transactionModel.find({}, { _id: 0, ...(options ?? {}) });
 }
 
-function createAccount(personalInfo: { firstName: string, lastName: string, email: string, country?: string, currency?: string }) {
+function createAccount(personalInfo: {
+  firstName: string;
+  lastName: string;
+  email: string;
+  country?: string;
+  currency?: string;
+}) {
   return accountModel.create(personalInfo);
 }
 
-function createTransaction(amount: number, currency: string, sourceAccountId: string, targetAccountId: string) {
-  return transactionModel.create({ amount, currency, sourceAccountId, targetAccountId });
+function createTransaction(
+  amount: number,
+  currency: string,
+  sourceAccountId: string,
+  targetAccountId: string
+) {
+  return transactionModel.create({
+    amount,
+    currency,
+    sourceAccountId,
+    targetAccountId,
+  });
 }
 
 export default {

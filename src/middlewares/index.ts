@@ -21,7 +21,7 @@ export function registerMiddlewares(app: Express) {
 declare global {
   namespace Express {
     interface Request {
-      db: typeof databaseMiddleware
+      db: typeof databaseMiddleware;
     }
   }
 }

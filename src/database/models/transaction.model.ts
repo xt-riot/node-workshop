@@ -10,4 +10,7 @@ const transactionDatabaseSchema = new mongoose.Schema({
   createdAt: { type: Date, required: true, default: Date.now },
 });
 
-export const transactionModel = mongoose.model('Transaction', transactionDatabaseSchema);
+export const transactionModel = mongoose.model(
+  'Transaction',
+  transactionDatabaseSchema
+);

@@ -1,5 +1,10 @@
 import { reportController } from '../controllers/report.controller';
-import { ReportInputType, ReportOutputType, reportInputSchema, reportOutputSchema } from '../schemas/report.schema';
+import {
+  ReportInputType,
+  ReportOutputType,
+  reportInputSchema,
+  reportOutputSchema,
+} from '../schemas/report.schema';
 import { Route } from './index';
 
 const report: Route<ReportInputType, ReportOutputType> = {
@@ -18,6 +23,4 @@ const report: Route<ReportInputType, ReportOutputType> = {
   ],
 };
 
-export default [
-  report,
-];
+export default [report];

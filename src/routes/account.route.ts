@@ -1,8 +1,18 @@
 import { Route } from './index';
 import { createAccount } from '../controllers/accounts/create.controller';
 import { getTotalAssets } from '../controllers/accounts/getTotalAssets.controller';
-import { CreateAccountInputType, CreateAccountOutputType, createAccountInputSchema, createAccountOutputSchema } from '../schemas/accounts/create.schema';
-import { GetTotalAssetsInputType, GetTotalAssetsOutputSchema, getTotalAssetsInputSchema, getTotalAssetsOutputSchema } from '../schemas/accounts/getTotalAssets.schema';
+import {
+  CreateAccountInputType,
+  CreateAccountOutputType,
+  createAccountInputSchema,
+  createAccountOutputSchema,
+} from '../schemas/accounts/create.schema';
+import {
+  GetTotalAssetsInputType,
+  GetTotalAssetsOutputSchema,
+  getTotalAssetsInputSchema,
+  getTotalAssetsOutputSchema,
+} from '../schemas/accounts/getTotalAssets.schema';
 
 const create: Route<CreateAccountInputType, CreateAccountOutputType> = {
   method: 'POST',
@@ -20,7 +30,10 @@ const create: Route<CreateAccountInputType, CreateAccountOutputType> = {
   ],
 };
 
-const getBankAssets: Route<GetTotalAssetsInputType, GetTotalAssetsOutputSchema> = {
+const getBankAssets: Route<
+  GetTotalAssetsInputType,
+  GetTotalAssetsOutputSchema
+> = {
   method: 'GET',
   path: '/getTotalAssets',
   schema: {
@@ -30,7 +43,4 @@ const getBankAssets: Route<GetTotalAssetsInputType, GetTotalAssetsOutputSchema> 
   handler: getTotalAssets,
 };
 
-export default [
-  create,
-  getBankAssets,
-];
+export default [create, getBankAssets];

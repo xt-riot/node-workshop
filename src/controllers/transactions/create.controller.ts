@@ -1,7 +1,12 @@
 import { Request } from 'express';
-import { CreateTransactionInputType, CreateTransactionOutputSchema } from '../../schemas/transactions/create.schema';
+import {
+  CreateTransactionInputType,
+  CreateTransactionOutputSchema,
+} from '../../schemas/transactions/create.schema';
 
-export async function createTransaction(request: Request<{}, {}, CreateTransactionInputType>): Promise<CreateTransactionOutputSchema> {
+export async function createTransaction(
+  request: Request<{}, {}, CreateTransactionInputType>
+): Promise<CreateTransactionOutputSchema> {
   const source = await request.db.getAccount(request.body.sourceAccountId);
   const target = await request.db.getAccount(request.body.targetAccountId);
 
@@ -18,7 +23,12 @@ export async function createTransaction(request: Request<{}, {}, CreateTransacti
   }
   source.balance -= request.body.amount;
   target.balance += request.body.amount;
-  await request.db.createTransaction(request.body.amount, request.body.currency || 'EUR', request.body.sourceAccountId, request.body.targetAccountId);
+  await request.db.createTransaction(
+    request.body.amount,
+    request.body.currency || 'EUR',
+    request.body.sourceAccountId,
+    request.body.targetAccountId
+  );
   await source.save();
   await target.save();
 
